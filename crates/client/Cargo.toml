@@ -31,6 +31,7 @@ once_cell = { workspace = true }
 walkdir = { workspace = true }
 normpath = { workspace = true }
 pathdiff = { workspace = true }
+sqlx = { workspace = true, features = ["sqlite", "runtime-tokio-rustls"]}
 
 [target.'cfg(windows)'.dependencies.windows-sys]
 version = "0.45"

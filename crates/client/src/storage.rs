@@ -17,7 +17,10 @@ use warg_protocol::{
 };
 
 mod fs;
+mod sqlite;
+
 pub use fs::*;
+pub use sqlite::*;
 
 /// Trait for package storage implementations.
 ///
