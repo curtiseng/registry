@@ -26,8 +26,9 @@ dialoguer = "0.10.4"
 rpassword = "7.2.0"
 
 # TODO: remove these demo-related dependencies
-wasmtime = "9.0"
-wasmtime-wasi = "9.0"
+wasmtime = { git = "https://github.com/bytecodealliance/wasmtime", rev = "f3a7f631836bca3297cc9fd26d8eb7176519d306", features = ["component-model"] }
+wasmtime-wasi = { git = "https://github.com/bytecodealliance/wasmtime", rev = "f3a7f631836bca3297cc9fd26d8eb7176519d306", features = ["tokio"] }
+
 
 [dev-dependencies]
 warg-server = { workspace = true }
