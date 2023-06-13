@@ -70,6 +70,62 @@ pub struct StoragePaths {
     pub content_dir: PathBuf,
 }
 
+// find config.
+pub enum ConfigEither {
+    FsConfig(Config),
+    SqliteConfig(SqliteConfig),
+    MemoryConfig(MemoryConfig),
+}
+
+impl <T: Configuration> ConfigEither {
+    pub fn parse_config_to_storage(self) {
+        match self {
+            ConfigEither::FsConfig(_) => {}
+            ConfigEither::SqliteConfig(sqlite_config) => {
+                sqlite_config.parse_config_to_storage()
+            }
+            ConfigEither::MemoryConfig(_) => {}
+        }
+    }
+}
+
+pub trait Configuration {
+    type Config;
+
+    type StorageConfig;
+
+    fn from_file(path: impl AsRef<Path>) -> Self::Config;
+
+    fn write_to_file(&self, path: &Path) -> Result<()>;
+
+    fn parse_config_to_storage(&self) -> Self::StorageConfig;
+}
+
+pub struct SqliteConfig {
+
+}
+
+impl Configuration for SqliteConfig {
+    type Config = ();
+    type StorageConfig = ();
+
+    fn from_file(path: impl AsRef<Path>) -> Self::Config {
+        todo!()
+    }
+
+    fn write_to_file(&self, path: &Path) -> Result<()> {
+        todo!()
+    }
+
+    fn parse_config_to_storage(&self) -> Self::StorageConfig {
+        todo!()
+    }
+}
+
+pub struct MemoryConfig {
+
+}
+
 /// Represents the Warg client configuration.
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
